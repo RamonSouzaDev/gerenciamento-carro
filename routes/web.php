@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VeiculosController;
 
 /*
@@ -14,8 +16,13 @@ use App\Http\Controllers\VeiculosController;
 |
 */
 
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('/');
+Route::post('/login', [LoginController::class, 'authenticated'])->name('/login');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
 Route::get('/veiculos', [VeiculosController::class, 'index'])->name('veiculos.index');
-Route::get('/veiculos/create', [VeiculosController::class, 'create']);
+Route::get('/veiculos/create', [VeiculosController::class, 'create'])->name('veiculo.create');
 Route::post('/veiculos', [VeiculosController::class, 'store']);
 Route::get('/veiculos/{id}/edit', [VeiculosController::class, 'edit']);
 Route::put('/veiculos/{id}', [VeiculosController::class, 'update']);
