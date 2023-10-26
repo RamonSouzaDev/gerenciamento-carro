@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
+use App\Helpers\ExportHelper;
+use Illuminate\Http\Response;
+use App\Exports\VeiculoExport;
 use Yajra\DataTables\DataTables;
+use App\Helpers\ExcelExportHelper;
 
 class VeiculosController extends Controller
 {
@@ -66,5 +71,18 @@ class VeiculosController extends Controller
         $veiculo = Veiculo::findOrFail($id);
 
         return view('veiculos.show', compact('veiculo'));
+    }
+
+    /**
+     * Exporta os dados para planilha em Excel.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function exportar(Request $request)
+    {
+        $veiculos = Veiculo::all();
+
+        return ExcelExportHelper::exportToExcel($veiculos, VeiculoExport::class, 'veiculos.xlsx');
     }
 }

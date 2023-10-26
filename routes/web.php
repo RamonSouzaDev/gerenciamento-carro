@@ -28,4 +28,5 @@ Route::get('/veiculos/{id}/edit', [VeiculosController::class, 'edit']);
 Route::put('/veiculos/{id}', [VeiculosController::class, 'update']);
 Route::delete('/veiculos/{id}', [VeiculosController::class, 'destroy']);
 Route::get('/veiculos/{id}', [VeiculosController::class, 'show']);
+Route::get('/exportar-veiculos', [VeiculosController::class, 'exportar'])->name('veiculos.exportar');
 

@@ -22,6 +22,7 @@
                         <td>
                             <a href="/veiculos/{{ $veiculo->id }}/edit" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</a>
                             <a href="/veiculos/{{ $veiculo->id }}/destroy" class="btn btn-danger"><i class="bi bi-trash"></i> Excluir</a>
+                            <a href="/exportar-veiculos" class="btn btn-success">Exportar Excel</a>
                         </td>
                     </tr>
                 @endforeach
