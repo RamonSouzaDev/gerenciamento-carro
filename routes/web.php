@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VeiculosController;
 
 /*
@@ -16,18 +15,27 @@ use App\Http\Controllers\VeiculosController;
 |
 */
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('/');
-Route::post('/login', [LoginController::class, 'authenticated'])->name('/login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('/logout');
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/veiculos', [VeiculosController::class, 'index'])->name('veiculos.index');
-Route::get('/veiculos/create', [VeiculosController::class, 'create'])->name('veiculo.create');
-Route::post('/veiculos', [VeiculosController::class, 'store']);
-Route::get('/veiculos/{id}/edit', [VeiculosController::class, 'edit']);
-Route::put('/veiculos/{id}', [VeiculosController::class, 'update']);
-Route::delete('/veiculos/{id}', [VeiculosController::class, 'destroy']);
-Route::get('/veiculos/{id}', [VeiculosController::class, 'show']);
-Route::get('/exportar-veiculos', [VeiculosController::class, 'exportar'])->name('veiculos.exportar');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/veiculos', [VeiculosController::class, 'index'])->name('veiculos.index');
+    Route::get('/veiculos/create', [VeiculosController::class, 'create'])->name('veiculo.create');
+    Route::post('/veiculos/store', [VeiculosController::class, 'store'])->name('veiculo.store');
+    Route::post('/veiculos', [VeiculosController::class, 'destroy'])->name('veiculos.destroy');
+    Route::put('/veiculos/{id}', [VeiculosController::class, 'update']);
+    Route::get('/veiculos/{id}', [VeiculosController::class, 'show']);
+    Route::get('/veiculos/{veiculo}/edit', [VeiculosController::class, 'edit'])->name('veiculos.edit');
+    Route::delete('/veiculos/{veiculo}', [VeiculosController::class, 'destroy'])->name('veiculos.destroy');
+    Route::get('/exportar-veiculos', [VeiculosController::class, 'exportarExcel'])->name('veiculos.exportar');
+});
+
+require __DIR__ . '/auth.php';

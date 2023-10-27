@@ -1,4 +1,3 @@
-@include('layouts.menu')
 @extends('layouts.app')
 
 <body>
@@ -22,9 +21,13 @@
                     <td>{{ $veiculo->marca }}</td>
                     <td>{{ $veiculo->ano }}</td>
                     <td>
-                        <a href="/veiculos/{{ $veiculo->id }}/edit" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</a>
-                        <a href="/veiculos/{{ $veiculo->id }}/destroy" class="btn btn-danger"><i class="bi bi-trash"></i> Excluir</a>
-                        <a href="/exportar-veiculos" class="btn btn-success">Exportar Excel</a>
+                        <a href="{{ route('veiculos.edit', $veiculo) }}" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</a>
+                        <form method="POST" action="{{ route('veiculos.destroy', $veiculo) }}" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                        <a href="{{ route('veiculos.exportar') }}" class="btn btn-success">Exportar Excel</a>
                     </td>
                 </tr>
                 @endforeach

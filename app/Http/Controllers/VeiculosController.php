@@ -79,7 +79,7 @@ class VeiculosController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function exportar(Request $request)
+    public function exportarExcel(Request $request)
     {
         $veiculos = Veiculo::all();
 
