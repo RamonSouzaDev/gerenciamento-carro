@@ -8,8 +8,11 @@
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+        <testsuite name="Http">
+            <directory>tests/Http</directory>
+        </testsuite>
+        <testsuite name="Models">
+            <directory>tests/Models</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -17,6 +20,7 @@
             <directory>app</directory>
         </include>
     </source>
+    
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
@@ -28,9 +32,5 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="XDEBUG_MODE" value="coverage" />
-        <ini name="xdebug.coverage_enable" value="1" />
-        <ini name="xdebug.coverage_html" value="1" />
-        <ini name="xdebug.coverage_report" value="html" />
-        <ini name="xdebug.coverage_output_dir" value="storage/coverage" />
     </php>
 </phpunit>

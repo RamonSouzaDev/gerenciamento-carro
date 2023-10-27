@@ -18,6 +18,7 @@ use App\Http\Controllers\VeiculosController;
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('/');
 Route::post('/login', [LoginController::class, 'authenticated'])->name('/login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('/logout');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 

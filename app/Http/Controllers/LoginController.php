@@ -21,4 +21,10 @@ class LoginController extends Controller
     {
         return redirect()->route('veiculos.index');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('/');
+    }
 }
