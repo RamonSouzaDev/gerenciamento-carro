@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\VeiculoStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Veiculo extends Model
@@ -11,10 +12,12 @@ class Veiculo extends Model
         'modelo',
         'marca',
         'ano',
+        'status'
     ];
 
     public function getAnoModeloAttribute()
     {
         return $this->ano . ' - ' . $this->modelo;
     }
+
 }

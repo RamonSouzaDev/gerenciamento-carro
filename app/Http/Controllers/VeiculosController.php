@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Veiculo;
+use App\Enums\VeiculoStatus;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use App\Helpers\ExportHelper;
@@ -32,6 +33,7 @@ class VeiculosController extends Controller
         $veiculo->modelo = $request->input('modelo');
         $veiculo->marca = $request->input('marca');
         $veiculo->ano = $request->input('ano');
+        $veiculo->status = VeiculoStatus::EXCELENTE;
 
         $veiculo->save();
 
