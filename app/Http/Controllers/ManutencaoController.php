@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Manutencao;
 use Illuminate\Http\Request;
+use App\Helpers\PdfExportHelper;
 
 class ManutencaoController extends Controller
 {
@@ -53,6 +56,13 @@ class ManutencaoController extends Controller
         $manutencao->delete();
 
         return redirect()->route('manutencoes.index');
+    }
+
+    public function exportarPDF()
+    {
+        $manutencoes = Manutencao::all();
+
+        return PdfExportHelper::gerarPDF('relatorios.manutencao.pdf', ['manutencoes' => $manutencoes], ['relatorio_manutencoes.pdf']);
     }
 }
 

@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/exportar-veiculos', [VeiculosController::class, 'exportarExcel'])->name('veiculos.exportar');
 
     Route::resource('manutencoes', ManutencaoController::class);
+    Route::get('/manutencao/exportar-pdf', [ManutencaoController::class, 'exportarPDF'])->name('manutencao.exportar-pdf');
 
     Route::resource('mecanicos', MecanicoController::class);
 });

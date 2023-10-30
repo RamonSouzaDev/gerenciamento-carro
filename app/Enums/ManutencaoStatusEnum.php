@@ -7,7 +7,7 @@ use Illuminate\Validation\Rules\Enum;
 final class ManutencaoStatusEnum extends Enum
 {
     public const PENDENTE = 'pendente';
-    public const CONCLUIDA = 'concluída';
+    public const CONCLUIDA = 'concluida';
     public const REPROVADA = 'reprovada';
 
     public static function getDescription($value): string
