@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Veiculo;
-use App\Enums\VeiculoStatus;
+use App\Enums\VeiculoStatusEnum;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
-use App\Helpers\ExportHelper;
 use Illuminate\Http\Response;
 use App\Exports\VeiculoExport;
-use Yajra\DataTables\DataTables;
 use App\Helpers\ExcelExportHelper;
 
 class VeiculosController extends Controller
@@ -33,7 +30,7 @@ class VeiculosController extends Controller
         $veiculo->modelo = $request->input('modelo');
         $veiculo->marca = $request->input('marca');
         $veiculo->ano = $request->input('ano');
-        $veiculo->status = VeiculoStatus::EXCELENTE;
+        $veiculo->status = VeiculoStatusEnum::EXCELENTE;
 
         $veiculo->save();
 

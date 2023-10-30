@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ManutencaoStatus;
+use App\Enums\ManutencaoStatusEnum;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('manutencoes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('veiculo_id');
-            $table->enum('status', ManutencaoStatus::labels());
+            $table->enum('status', ManutencaoStatusEnum::labels());
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->text('descricao');

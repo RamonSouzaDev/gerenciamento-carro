@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use Illuminate\Validation\Rules\Enum;
 
-final class VeiculoStatus extends Enum
+final class VeiculoStatusEnum extends Enum
 {
     public const EXCELENTE = 'Excelente';
     public const BOM = 'Bom';

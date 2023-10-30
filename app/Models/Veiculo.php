@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Manutencao;
-use App\Enums\VeiculoStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

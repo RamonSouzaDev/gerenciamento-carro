@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use Illuminate\Validation\Rules\Enum;
 
-final class ManutencaoStatus extends Enum
+final class ManutencaoStatusEnum extends Enum
 {
     public const PENDENTE = 'pendente';
     public const CONCLUIDA = 'concluída';

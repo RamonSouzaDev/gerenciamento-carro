@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\VeiculoStatus;
+use App\Enums\VeiculoStatusEnum;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,7 +13,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('veiculos', function (Blueprint $table) {
-            $table->enum('status', VeiculoStatus::labels())->nullable()->after('ano');
+            $table->enum('status', VeiculoStatusEnum::labels())->nullable()->after('ano');
         });
     }
 

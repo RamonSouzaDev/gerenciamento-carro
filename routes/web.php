@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VeiculosController;
 use App\Http\Controllers\ManutencaoController;
+use App\Http\Controllers\MecanicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\ManutencaoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/exportar-veiculos', [VeiculosController::class, 'exportarExcel'])->name('veiculos.exportar');
 
     Route::resource('manutencoes', ManutencaoController::class);
+
+    Route::resource('mecanicos', MecanicoController::class);
 });
 
 require __DIR__ . '/auth.php';

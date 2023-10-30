@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ $manutencao->id }}</td>
                     <td>{{ $manutencao->veiculo->placa }}</td>
-                    <td>{{ \App\Enums\ManutencaoStatus::getDescription($manutencao->status) }}</td>
+                    <td>{{ \App\Enums\ManutencaoStatusEnum::getDescription($manutencao->status) }}</td>
                     <td>{{ \Carbon\Carbon::parse($manutencao->data_inicio)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($manutencao->data_fim)->format('d/m/Y') }}</td>
                     <td>
