@@ -30,9 +30,9 @@
                 <tr>
                     <td>{{ $manutencao->id }}</td>
                     <td>{{ $manutencao->veiculo->placa }}</td>
-                    <td>{{ $manutencao->status }}</td>
-                    <td>{{ $manutencao->data_inicio }}</td>
-                    <td>{{ $manutencao->data_fim }}</td>
+                    <td>{{ \App\Enums\ManutencaoStatus::getDescription($manutencao->status) }}</td>
+                    <td>{{ \Carbon\Carbon::parse($manutencao->data_inicio)->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($manutencao->data_fim)->format('d/m/Y') }}</td>
                     <td>
                         <a href="{{ route('manutencoes.show', $manutencao) }}" class="btn btn-primary">Detalhes</a>
                         <a href="{{ route('manutencoes.edit', $manutencao) }}" class="btn btn-warning">Editar</a>
@@ -44,6 +44,7 @@
     </table>
 
     <a href="{{ route('manutencoes.create') }}" class="btn btn-success">Nova manutenção</a>
+    <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

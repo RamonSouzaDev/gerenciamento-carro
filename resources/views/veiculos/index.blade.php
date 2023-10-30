@@ -35,6 +35,7 @@
             </tbody>
         </table>
         <a href="{{ route('veiculo.create') }}" class="btn btn-primary">Registrar veículo</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-primary">Voltar</a>
     </div>
 </body>
 

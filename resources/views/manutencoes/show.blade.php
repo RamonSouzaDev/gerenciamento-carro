@@ -30,15 +30,15 @@
             <tr>
                 <td>{{ $manutencao->id }}</td>
                 <td>{{ $manutencao->veiculo->placa }}</td>
-                <td>{{ $manutencao->status }}</td>
-                <td>{{ $manutencao->data_inicio }}</td>
-                <td>{{ $manutencao->data_fim }}</td>
+                <td>{{ \App\Enums\ManutencaoStatus::getDescription($manutencao->status) }}</td>
+                <td>{{ \Carbon\Carbon::parse($manutencao->data_inicio)->format('d/m/Y')  }}</td>
+                <td>{{ \Carbon\Carbon::parse($manutencao->data_fim)->format('d/m/Y')  }}</td>
                 <td>{{ $manutencao->descricao }}</td>
                 <td>{{ $manutencao->comentarios }}</td>
             </tr>
         </tbody>
     </table>
-
+    <a href="{{ route('manutencoes.index') }}" class="btn btn-primary">Voltar</a>
     <a href="{{ route('manutencoes.edit', $manutencao) }}" class="btn btn-warning">Editar</a>
     <a href="{{ route('manutencoes.destroy', $manutencao) }}" class="btn btn-danger">Excluir</a>
 </div>

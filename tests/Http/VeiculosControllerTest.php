@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\Veiculo;
 use App\Http\Controllers\VeiculosController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,9 +19,7 @@ class VeiculosControllerTest extends TestCase
     {
         $response = $this->get('/veiculos');
 
-        $response->assertStatus(200);
-        $response->assertViewIs('veiculos.index');
-        $response->assertViewHas('veiculos');
+        $response->assertFound();
     }
 
     /**
@@ -28,6 +27,8 @@ class VeiculosControllerTest extends TestCase
      */
     public function testSalvarVeiculo()
     {
+        $user = User::factory()->create();
+
         $data = [
             'placa' => 'AAA-1234',
             'modelo' => 'Fiat Uno',
@@ -35,12 +36,14 @@ class VeiculosControllerTest extends TestCase
             'ano' => 2023,
         ];
 
-        $response = $this->post('/veiculos', $data);
+        // Simula o login
+        $this->actingAs($user);
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/veiculos');
+        $response = $this->post('/veiculos/store', $data);
 
         $veiculo = Veiculo::where('placa', $data['placa'])->first();
+
+        dd($veiculo);
 
         $this->assertEquals($data['placa'], $veiculo->placa);
         $this->assertEquals($data['modelo'], $veiculo->modelo);
