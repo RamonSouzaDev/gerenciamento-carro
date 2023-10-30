@@ -36,8 +36,9 @@
 
             <!-- Page Content -->
             <main>
-            @yield('content')
+                
                 {{ $slot ?? null }}
+                @yield('content')
             </main>
         </div>
     </body>

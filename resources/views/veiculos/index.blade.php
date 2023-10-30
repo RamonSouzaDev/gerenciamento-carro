@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
 <body>
     <div class="container">
         <h1>Veículos</h1>
@@ -38,3 +39,4 @@
 </body>
 
 </html>
+@endsection

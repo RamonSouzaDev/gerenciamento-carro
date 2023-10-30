@@ -2,16 +2,20 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\Veiculo;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Register the view composer
-        View::composer('*', function ($view) {
-            // Do something with the view
+        View::composer([
+            'manutencoes.create',
+            'manutencoes.edit'
+        ], function ($view) {
+            $veiculos = Veiculo::all(); // Carrega todos os veículos
+            $view->with('veiculos', $veiculos);
         });
     }
 

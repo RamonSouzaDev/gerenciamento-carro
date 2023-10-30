@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VeiculosController;
+use App\Http\Controllers\ManutencaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/veiculos/create', [VeiculosController::class, 'create'])->name('veiculo.create');
     Route::post('/veiculos/store', [VeiculosController::class, 'store'])->name('veiculo.store');
     Route::post('/veiculos', [VeiculosController::class, 'destroy'])->name('veiculos.destroy');
-    Route::put('/veiculos/{id}', [VeiculosController::class, 'update']);
+    Route::put('/veiculos/{id}', [VeiculosController::class, 'update'])->name('veiculo.update');;
     Route::get('/veiculos/{id}', [VeiculosController::class, 'show']);
     Route::get('/veiculos/{veiculo}/edit', [VeiculosController::class, 'edit'])->name('veiculos.edit');
     Route::delete('/veiculos/{veiculo}', [VeiculosController::class, 'destroy'])->name('veiculos.destroy');
     Route::get('/exportar-veiculos', [VeiculosController::class, 'exportarExcel'])->name('veiculos.exportar');
+
+    Route::resource('manutencoes', ManutencaoController::class);
 });
 
 require __DIR__ . '/auth.php';

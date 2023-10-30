@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Veiculo;
+use App\Models\Manutencao;
 use App\Observers\VeiculoObserver;
+use App\Observers\ManutencaoObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Veiculo::observe(VeiculoObserver::class);
+        Manutencao::observe(ManutencaoObserver::class);
     }
 }
