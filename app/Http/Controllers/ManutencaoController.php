@@ -7,13 +7,17 @@ use Barryvdh\DomPDF\PDF;
 use App\Models\Manutencao;
 use Illuminate\Http\Request;
 use App\Helpers\PdfExportHelper;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class ManutencaoController extends Controller
 {
     public function index()
     {
-        $manutencoes = Manutencao::all();
-
+        $manutencoes = Cache::remember('manutencoes', 60, function () {
+            return Manutencao::all();
+        });
+    
         return view('manutencoes.index', compact('manutencoes'));
     }
 
