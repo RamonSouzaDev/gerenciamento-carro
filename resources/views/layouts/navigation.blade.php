@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('mecanicos.index')" :active="request()->routeIs('mecanicos.index')">
                         Mecânicos
                     </x-nav-link>
+                    <x-nav-link :href="route('faturamento.index')" :active="request()->routeIs('faturamento.index')">
+                        Faturamento
+                    </x-nav-link>
                 </div>
             </div>
 

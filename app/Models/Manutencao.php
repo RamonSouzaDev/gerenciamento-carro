@@ -19,10 +19,34 @@ class Manutencao extends Model
         'data_fim',
         'descricao',
         'comentarios',
+        'valor_estimado',
+        'valor_final'
     ];
 
     public function veiculo()
     {
         return $this->belongsTo(Veiculo::class, 'veiculo_id');
+    }
+
+    public function faturamento()
+    {
+        return $this->hasOne(Faturamento::class);
+    }
+
+    public function getValorEstimado()
+    {
+        $servicos = $this->servicos;
+        $valorEstimado = 0;
+
+        foreach ($servicos as $servico) {
+            $valorEstimado += $servico->valor;
+        }
+
+        return $valorEstimado;
+    }
+
+    public function getValorFinal()
+    {
+        return $this->valor_final;
     }
 }

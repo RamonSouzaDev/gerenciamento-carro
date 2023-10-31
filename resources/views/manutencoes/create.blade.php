@@ -10,7 +10,7 @@
             <label for="veiculo_id" class="form-label">Veículo</label>
             <select id="veiculo_id" name="veiculo_id" class="form-control">
                 @foreach ($veiculos as $veiculo)
-                    <option value="{{ $veiculo->id }}">{{ $veiculo->placa }}</option>
+                <option value="{{ $veiculo->id }}">{{ $veiculo->placa }}</option>
                 @endforeach
             </select>
         </div>
@@ -32,6 +32,16 @@
         <div class="mb-3">
             <label for="data_fim" class="form-label">Data de fim</label>
             <input type="date" id="data_fim" name="data_fim" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="valor_estimado">Valor estimado</label>
+            <input type="number" name="valor_estimado" id="valor_estimado" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="valor_final">Valor final</label>
+            <input type="number" name="valor_final" id="valor_final" class="form-control" required>
         </div>
 
         <div class="mb-3">

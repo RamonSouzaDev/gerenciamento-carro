@@ -14,7 +14,7 @@ class ManutencaoController extends Controller
 {
     public function index()
     {
-        $manutencoes = Cache::remember('manutencoes', 60, function () {
+        $manutencoes = Cache::remember('manutencoes', 01, function () {
             return Manutencao::all();
         });
     
@@ -47,8 +47,9 @@ class ManutencaoController extends Controller
         return view('manutencoes.edit', compact('manutencao'));
     }
 
-    public function update(Request $request, Manutencao $manutencao)
+    public function update(Request $request, $id)
     {
+        $manutencao = Manutencao::findOrFail($id);
         $manutencao->fill($request->all());
         $manutencao->save();
 
@@ -68,5 +69,6 @@ class ManutencaoController extends Controller
 
         return PdfExportHelper::gerarPDF('relatorios.manutencao.pdf', ['manutencoes' => $manutencoes], ['relatorio_manutencoes.pdf']);
     }
+
 }
 

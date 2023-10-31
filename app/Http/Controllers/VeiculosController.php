@@ -3,27 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\Veiculo;
-use App\Enums\VeiculoStatusEnum;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Exports\VeiculoExport;
+use App\Enums\VeiculoStatusEnum;
 use App\Helpers\ExcelExportHelper;
+use Illuminate\Http\RedirectResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
+/**
+ * Classe de controle para gerenciar operações relacionadas a veículos.
+ *
+ * @package App\Http\Controllers
+ */
 class VeiculosController extends Controller
 {
-    public function index()
+    /**
+     * Exibe uma lista de veículos.
+     *
+     * @return View
+     */
+    public function index(): View
     {
         $veiculos = Veiculo::all();
 
         return view('veiculos.index', compact('veiculos'));
     }
 
-    public function create()
+    /**
+     * Exibe o formulário de criação de um novo veículo.
+     *
+     * @return View
+     */
+    public function create(): View
     {
         return view('veiculos.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Armazena um novo veículo.
+     *
+     * @param  Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
         $veiculo = new Veiculo();
         $veiculo->placa = $request->input('placa');
@@ -37,14 +61,27 @@ class VeiculosController extends Controller
         return redirect()->route('veiculos.index');
     }
 
-    public function edit($id)
+    /**
+     * Exibe o formulário de edição de um veículo específico.
+     *
+     * @param  int $id
+     * @return View
+     */
+    public function edit($id): View
     {
         $veiculo = Veiculo::findOrFail($id);
 
         return view('veiculos.edit', compact('veiculo'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Atualiza um veículo específico.
+     *
+     * @param  Request $request
+     * @param  int $id
+     * @return RedirectResponse
+     */
+    public function update(Request $request, $id): RedirectResponse
     {
         $veiculo = Veiculo::findOrFail($id);
         $veiculo->placa = $request->input('placa');
@@ -57,7 +94,13 @@ class VeiculosController extends Controller
         return redirect()->route('veiculos.index');
     }
 
-    public function destroy($id)
+    /**
+     * Remove um veículo específico.
+     *
+     * @param  int $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
     {
         $veiculo = Veiculo::findOrFail($id);
         $veiculo->delete();
@@ -65,7 +108,13 @@ class VeiculosController extends Controller
         return redirect()->route('veiculos.index');
     }
 
-    public function show($id)
+    /**
+     * Exibe os detalhes de um veículo específico.
+     *
+     * @param  int $id
+     * @return View
+     */
+    public function show($id): View
     {
         $veiculo = Veiculo::findOrFail($id);
 
@@ -73,10 +122,10 @@ class VeiculosController extends Controller
     }
 
     /**
-     * Exporta os dados para planilha em Excel.
+     * Exporta veículos para um arquivo Excel.
      *
-     * @param Request $request
-     * @return Response
+     * @param  Request $request
+     * @return BinaryFileResponse
      */
     public function exportarExcel(Request $request)
     {
@@ -84,4 +133,5 @@ class VeiculosController extends Controller
 
         return ExcelExportHelper::exportToExcel($veiculos, VeiculoExport::class, 'veiculos.xlsx');
     }
+
 }

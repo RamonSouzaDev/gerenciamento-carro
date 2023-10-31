@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaturamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VeiculosController;
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/manutencao/exportar-pdf', [ManutencaoController::class, 'exportarPDF'])->name('manutencao.exportar-pdf');
 
     Route::resource('mecanicos', MecanicoController::class);
+
+    Route::resource('faturamento', FaturamentoController::class);
+
 });
 
 require __DIR__ . '/auth.php';
