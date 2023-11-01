@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <h1 class="text-center">Adicionar veículo</h1>
 
-                <form method="POST" action="{{ route('veiculo.store') }}" style="display: inline;">
+                <form method="POST" action="{{ route('veiculos.store') }}" style="display: inline;">
                     <div class="mb-3">
                         <label for="placa" class="form-label">Placa</label>
                         <input type="text" name="placa" id="placa" class="form-control" placeholder="Insira a placa do veículo">

@@ -34,7 +34,7 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('veiculo.create') }}" class="btn btn-primary">Registrar veículo</a>
+        <a href="{{ route('veiculos.create') }}" class="btn btn-primary">Registrar veículo</a>
     </div>
 </body>
 

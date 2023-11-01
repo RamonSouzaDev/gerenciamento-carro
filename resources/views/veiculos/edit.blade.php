@@ -8,7 +8,7 @@
 <body>
     <div class="card-box">
     <h1 class="text-center">Editar veículo</h1>
-    <form method="PUT" action="{{ route('veiculo.update', $veiculo->id) }}" style="display: inline;">
+    <form method="PUT" action="{{ route('veiculos.update', $veiculo->id) }}" style="display: inline;">
             @csrf
             <input class="form-control" type="text" name="placa" value="{{ $veiculo->placa }}" placeholder="Placa">
             <input class="form-control" type="text" name="modelo" value="{{ $veiculo->modelo }}" placeholder="Modelo">
