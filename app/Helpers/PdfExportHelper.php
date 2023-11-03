@@ -2,15 +2,18 @@
 
 namespace App\Helpers;
 
-use Barryvdh\DomPDF\PDF;
 use Dompdf\Dompdf;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
-use Illuminate\View\View;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Http\Response;
 
 class PdfExportHelper
 {
-    public static function gerarPDF($view, $data, $nomeArquivo)
+    /**
+     * Gera um arquivo PDF.
+     * 
+     * @return Response
+     */
+    public static function gerarPDF(string $view, array $data, array $nomeArquivo): Response
     {
         $pdf = new PDF(
             new Dompdf(),
@@ -25,6 +28,6 @@ class PdfExportHelper
             $nomeArquivo
         );
 
-        return $pdf->download('relatorio_manutencoes.pdf');
+        return $pdf->download($nomeArquivo[0]);
     }
 }

@@ -15,6 +15,7 @@
 
     <div class="container">
         <h1>Manutenções</h1>
+        <a href="{{ route('manutencoes.create') }}" class="btn btn-success float-end">Nova manutenção</a>
 
         <table class="table table-striped">
             <thead>
@@ -22,6 +23,7 @@
                     <th>ID</th>
                     <th>Veículo</th>
                     <th>Status</th>
+                    <th>Descrição</th>
                     <th>Data de início</th>
                     <th>Data de fim</th>
                     <th>Ações</th>
@@ -32,6 +34,7 @@
                 <tr>
                     <td>{{ $manutencao->id }}</td>
                     <td>{{ $manutencao->veiculo->placa }}</td>
+                    <td>{{ $manutencao->descricao }}</td>
                     <td>{{ \App\Enums\ManutencaoStatusEnum::getDescription($manutencao->status) }}</td>
                     <td>{{ \Carbon\Carbon::parse($manutencao->data_inicio)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($manutencao->data_fim)->format('d/m/Y') }}</td>
@@ -48,7 +51,8 @@
             </tbody>
         </table>
 
-        <a href="{{ route('manutencoes.create') }}" class="btn btn-success">Nova manutenção</a>
+        {{ $manutencoes->links() }}
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

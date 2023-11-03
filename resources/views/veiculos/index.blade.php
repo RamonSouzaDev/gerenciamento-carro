@@ -4,6 +4,7 @@
 <body>
     <div class="container">
         <h1>Veículos</h1>
+        <a href="{{ route('veiculos.create') }}" class="btn btn-primary float-end">Registrar veículo</a>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -28,13 +29,13 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Excluir</button>
                         </form>
-                        <a href="{{ route('veiculos.exportar') }}" class="btn btn-success">Exportar Excel</a>
+                        <a href="{{ route('veiculo.exportar-excel') }}" class="btn btn-success">Exportar Excel</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('veiculos.create') }}" class="btn btn-primary">Registrar veículo</a>
+        {{ $veiculos->links() }}
     </div>
 </body>
 

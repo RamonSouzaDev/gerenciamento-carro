@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Faturamentos</h1>
-
+                <a href="{{ route('faturamento.create') }}" class="btn btn-success float-end">Novo faturamento</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -32,9 +32,9 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                <a href="{{ route('faturamento.create') }}" class="btn btn-success">Novo faturamento</a>
+                {{ $faturamentos->links() }}
             </div>
         </div>
     </div>
+    
 @endsection

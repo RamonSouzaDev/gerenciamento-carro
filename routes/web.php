@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::resource('veiculos', VeiculosController::class);
-    Route::get('veiculos/exportar-veiculos', [VeiculosController::class, 'exportarExcel'])->name('veiculos.exportar');
+    Route::get('veiculo/exportar-excel', [VeiculosController::class, 'exportarExcel'])->name('veiculo.exportar-excel');
 
     Route::resource('manutencoes', ManutencaoController::class);
     Route::get('/manutencao/exportar-pdf', [ManutencaoController::class, 'exportarPDF'])->name('manutencao.exportar-pdf');

@@ -1,8 +1,6 @@
-@extends('layouts.mail')
-
-@section('content')
-
-<p>Olá {{ $manutencao->veiculo->proprietario->nome }},</p>
+<!DOCTYPE html>
+<html>
+<p>Descrição {{ $manutencao->descricao }},</p>
 
 <p>Uma nova manutenção foi criada para o seu veículo {{ $manutencao->veiculo->placa }}.</p>
 
@@ -24,5 +22,4 @@
 <p>Atenciosamente,</p>
 
 <p>Equipe do sistema de manutenção</p>
-
-@endsection
+</html>

@@ -1,36 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap/app.php"
          colors="true"
->
+         verbose="true">
     <testsuites>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
         <testsuite name="Unit">
-            <directory>tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Http">
-            <directory>tests/Http</directory>
-        </testsuite>
-        <testsuite name="Models">
-            <directory>tests/Models</directory>
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <source>
-        <include>
-            <directory>app</directory>
-        </include>
-    </source>
-    
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html">
+            <target>./storage/app/coverage</target>
+        </log>
+    </logging>
+
     <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
-        <env name="MAIL_MAILER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="TELESCOPE_ENABLED" value="false"/>
+        <server name="APP_ENV" value="testing"/>
+        <server name="BCRYPT_ROUNDS" value="4"/>
+        <server name="CACHE_DRIVER" value="array"/>
+        <server name="DB_CONNECTION" value="sqlite"/>
+        <server name="DB_DATABASE" value=":memory:"/>
+        <server name="MAIL_MAILER" value="log"/>
+        <server name="QUEUE_CONNECTION" value="sync"/>
+        <server name="SESSION_DRIVER" value="array"/>
+        <server name="SESSION_LIFETIME" value="120"/>
+        <server name="HORIZON_PATH" value="horizon"/>
+        <server name="HORIZON_USE" value="default"/>
+        <server name="HORIZON_PREFIX" value="myapp_horizon:"/>
+        <server name="HORIZON_ENV" value="local"/>
+        <server name="HORIZON_SUPERVISOR_1" value="supervisor-1"/>
+        <server name="HORIZON_SUPERVISOR_1_CONNECTION" value="redis"/>
+        <server name="HORIZON_SUPERVISOR_1_QUEUE" value="default"/>
+        <server name="HORIZON_SUPERVISOR_1_BALANCE" value="auto"/>
+        <server name="HORIZON_SUPERVISOR_1_AUTOSCALINGSTRATEGY" value="time"/>
+        <server name="HORIZON_SUPERVISOR_1_MAXPROCESSES" value="1"/>
+        <server name="HORIZON_SUPERVISOR_1_MAXTIME" value="0"/>
+        <server name="HORIZON_SUPERVISOR_1_MAXJOBS" value="0"/>
+        <server name="HORIZON_SUPERVISOR_1_MEMORY" value="128"/>
+        <server name="HORIZON_SUPERVISOR_1_TRIES" value="1"/>
+        <server name="HORIZON_SUPERVISOR_1_TIMEOUT" value="60"/>
+        <server name="HORIZON_SUPERVISOR_1_NICE" value="0"/>
         <env name="XDEBUG_MODE" value="coverage" />
+        <ini name="xdebug.mode"value="coverage" />"
     </php>
 </phpunit>

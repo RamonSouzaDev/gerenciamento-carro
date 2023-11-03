@@ -21,6 +21,9 @@ class Veiculo extends Model
         return $this->ano . ' - ' . $this->modelo;
     }
 
+    /**
+     * @return HasMany
+     */
     public function manutencoes(): HasMany
     {
         return $this->hasMany(Manutencao::class, 'veiculo_id', 'id');

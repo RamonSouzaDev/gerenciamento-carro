@@ -26,7 +26,7 @@ class VeiculosController extends Controller
      */
     public function index(): View
     {
-        $veiculos = Veiculo::all();
+        $veiculos = Veiculo::paginate(10);
 
         return view('veiculos.index', compact('veiculos'));
     }
@@ -127,7 +127,7 @@ class VeiculosController extends Controller
      * @param  Request $request
      * @return BinaryFileResponse
      */
-    public function exportarExcel(Request $request)
+    public function exportarExcel(): BinaryFileResponse
     {
         $veiculos = Veiculo::all();
 

@@ -20,7 +20,7 @@ class FaturamentoController extends Controller
      */
     public function index(): View
     {
-        $faturamentos = Faturamento::all();
+        $faturamentos = Faturamento::paginate(10);
 
         return view('faturamentos.index', compact('faturamentos'));
     }
@@ -95,6 +95,6 @@ class FaturamentoController extends Controller
         $faturamento->delete();
 
         return redirect()->route('faturamentos.index');
-}
+    }
 
 }

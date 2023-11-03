@@ -2,11 +2,21 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ExcelExportHelper
-{
-    public static function exportToExcel($data, $exportClass, $fileName, $format = 'Xlsx')
+{   
+    /**
+     * Gera um arquivo Excel.
+     *
+     * @param  Collection $data
+     * @param string $fileName
+     * @param string $exportClass
+     * @return BinaryFileResponse
+     */
+    public static function exportToExcel(Collection $data, string $exportClass, string $fileName, $format = 'Xlsx'): BinaryFileResponse
     {
         $excel = app(Excel::class);
         return $excel->download(new $exportClass($data), $fileName, $format);

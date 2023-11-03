@@ -15,7 +15,7 @@ class ManutencaoCriada extends Mailable
     public $manutencao;
 
     public function __construct(Manutencao $manutencao)
-    {
+    {   
         $this->manutencao = $manutencao;
     }
 
@@ -24,11 +24,7 @@ class ManutencaoCriada extends Mailable
         // Configura o assunto do e-mail
         $this->subject('Manutenção criada');
 
-        // Configura o corpo do e-mail
-        $this->view('emails.manutencao-criada', [
-            'manutencao' => $this->manutencao,
-        ]);
+        return $this->view('emails.manutencao-criada', ['manutencao' => $this->manutencao]);
 
-        return $this;
     }
 }

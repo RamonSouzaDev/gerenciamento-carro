@@ -19,7 +19,7 @@ class MecanicoController extends Controller
      */
     public function index(): View
     {
-        $mecanicos = Mecanico::all();
+        $mecanicos = Mecanico::paginate(10);
 
         return view('mecanicos.index', compact('mecanicos'));
     }

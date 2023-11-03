@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Lista de Mecânicos</h1>
-    <a href="{{ route('mecanicos.create') }}" class="btn btn-primary mb-2">Adicionar Mecânico</a>
-
+    <a href="{{ route('mecanicos.create') }}" class="btn btn-primary mb-2 float-end">Adicionar Mecânico</a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,5 +29,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $mecanicos->links() }}
 </div>
 @endsection

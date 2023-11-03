@@ -33,20 +33,4 @@ class Manutencao extends Model
         return $this->hasOne(Faturamento::class);
     }
 
-    public function getValorEstimado()
-    {
-        $servicos = $this->servicos;
-        $valorEstimado = 0;
-
-        foreach ($servicos as $servico) {
-            $valorEstimado += $servico->valor;
-        }
-
-        return $valorEstimado;
-    }
-
-    public function getValorFinal()
-    {
-        return $this->valor_final;
-    }
 }

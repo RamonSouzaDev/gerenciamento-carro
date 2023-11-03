@@ -11,11 +11,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class EnviarEmailNotificacaoManutencao implements ShouldQueue
+class EnviarEmailNotificacaoManutencaoJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $manutencao;
+    protected $manutencao;
 
     public function __construct(Manutencao $manutencao)
     {
@@ -25,7 +25,7 @@ class EnviarEmailNotificacaoManutencao implements ShouldQueue
     public function handle()
     {
         // Envia o e-mail
-        Mail::to($this->manutencao->veiculo->proprietario->email)
+        Mail::to('dwmom@hotmail.com')
             ->send(new ManutencaoCriada($this->manutencao));
     }
 }
